@@ -7,7 +7,7 @@ export async function GET() {
 
   const cssSelectors = {
     rating: "div.rating-number",
-    solved: ".rating-data-section .problems-solved > h3",
+    solved: ".rating-data-section > h3",
   };
 
   try {
@@ -16,10 +16,10 @@ export async function GET() {
     const $ = cheerio.load(html);
 
     const rating = $(cssSelectors.rating).text().trim();
-
     const subs = $(cssSelectors.solved).eq(3).text().trim();
     const lastIndex2 = subs.lastIndexOf(" ");
     const subm = subs.substring(lastIndex2 + 1);
+    console.log(subs);
 
     const data = {
       rating,
