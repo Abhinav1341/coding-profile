@@ -1,6 +1,6 @@
-export async function fetchUserInfo(handle) {
+export async function fetchUserInfo() {
   const response = await fetch(
-    `https://codeforces.com/api/user.info?handles=${handle}`
+    `https://codeforces.com/api/user.info?handles=vanibha13`
   );
   const data = await response.json();
 
@@ -11,9 +11,9 @@ export async function fetchUserInfo(handle) {
   }
 }
 
-export async function fetchUserStatus(handle) {
+export async function fetchUserStatus() {
   const response = await fetch(
-    `https://codeforces.com/api/user.status?handle=${handle}`
+    `https://codeforces.com/api/user.status?handle=vanibha13`
   );
   const data = await response.json();
 
@@ -24,10 +24,10 @@ export async function fetchUserStatus(handle) {
   }
 }
 
-export async function fetchCodeforcesData(handle) {
+export async function fetchCodeforcesData() {
   try {
-    const userInfo = await fetchUserInfo(handle);
-    const submissions = await fetchUserStatus(handle);
+    const userInfo = await fetchUserInfo();
+    const submissions = await fetchUserStatus();
 
     const solvedProblems = new Set();
     submissions.forEach((submission) => {
@@ -43,8 +43,8 @@ export async function fetchCodeforcesData(handle) {
   } catch (error) {
     console.error(error);
     return {
-      rating: null,
-      solvedCount: null,
+      rating: 0,
+      solvedCount: 0,
     };
   }
 }

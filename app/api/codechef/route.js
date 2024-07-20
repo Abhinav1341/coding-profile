@@ -6,9 +6,8 @@ export async function GET() {
   const url = "https://www.codechef.com/users/ableed";
 
   const cssSelectors = {
-    profile: ".h2-style",
-    rating: ".rating-number",
-    subs: ".rating-data-section > h3",
+    rating: "div.rating-number",
+    solved: ".rating-data-section .problems-solved > h3",
   };
 
   try {
@@ -16,24 +15,20 @@ export async function GET() {
     const html = response.data;
     const $ = cheerio.load(html);
 
-    const profile = $(cssSelectors.profile).text().trim();
     const rating = $(cssSelectors.rating).text().trim();
-    const subsText = $(cssSelectors.subs).eq(3).text().trim();
-    const lastIndex = subsText.lastIndexOf(" ");
-    const subs = subsText.substring(lastIndex + 1);
+
+    const subs = $(cssSelectors.solved).eq(3).text().trim();
+    const lastIndex2 = subs.lastIndexOf(" ");
+    const subm = subs.substring(lastIndex2 + 1);
 
     const data = {
-      subs,
-      profile,
       rating,
+      subm,
     };
 
     return NextResponse.json(data);
   } catch (error) {
-    console.error(`Error fetching the URL: ${error}`);
-    return NextResponse.json(
-      { error: "Failed to fetch data" },
-      { status: 500 }
-    );
+    console.error(`Error fetching the URL: ${error.message}`);
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

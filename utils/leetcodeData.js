@@ -1,6 +1,6 @@
-export async function fetchUserContestData(handle) {
+export async function fetchUserContestData() {
   const response = await fetch(
-    `https://alfa-leetcode-api.onrender.com/${handle}/contest`
+    `https://alfa-leetcode-api.onrender.com/ableed/contest`
   );
 
   if (!response.ok) {
@@ -11,9 +11,9 @@ export async function fetchUserContestData(handle) {
   return data;
 }
 
-export async function fetchUserSolvedData(handle) {
+export async function fetchUserSolvedData() {
   const response = await fetch(
-    `https://alfa-leetcode-api.onrender.com/${handle}/solved`
+    `https://alfa-leetcode-api.onrender.com/ableed/solved`
   );
 
   if (!response.ok) {
@@ -24,20 +24,20 @@ export async function fetchUserSolvedData(handle) {
   return data;
 }
 
-export async function fetchLeetCodeData(handle) {
+export async function fetchLeetCodeData() {
   try {
-    const contestData = await fetchUserContestData(handle);
-    const solvedData = await fetchUserSolvedData(handle);
+    const contestData = await fetchUserContestData();
+    const solvedData = await fetchUserSolvedData();
 
     return {
-      contestData,
-      solvedData,
+      rating: contestData.contestRating,
+      subs: solvedData.solvedProblem,
     };
   } catch (error) {
     console.error("Error fetching LeetCode data:", error);
     return {
-      contestData: null,
-      solvedData: null,
+      contestData: 0,
+      solvedData: 0,
     };
   }
 }

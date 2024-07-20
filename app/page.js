@@ -1,3 +1,5 @@
+"use client";
+import { useState, useEffect } from "react";
 import Nav from "../components/ui/navbar";
 import Sidebar from "../components/ui/sidebar";
 import Particles from "@/components/magicui/particles";
@@ -10,17 +12,37 @@ import { fetchScrapedCCData } from "@/utils/codechef";
 import { fetchScrapedGFGData } from "@/utils/gfgData";
 import { fetchCodeforcesData } from "@/utils/CodeForcesData";
 
-export default async function Home() {
+export default function Home() {
   ////
-  const CFhandle = "vanibha13";
-  const LChandle = "ableed";
-  ////
-  const dataCF = await fetchCodeforcesData(CFhandle);
-  const { contestData, solvedData } = await fetchLeetCodeData(LChandle);
-  /////
-  const ccData = await fetchScrapedCCData();
-  const gfgData = await fetchScrapedGFGData();
-  /////
+  const [dataCF, setDataCF] = useState({ solvedCount: 0, rating: 0 });
+  const [leetCodeData, setLeetCodeData] = useState({
+    rating: 0,
+    solved: 0,
+  });
+  const [ccData, setCCData] = useState({ solved: 0, rating: 0 });
+  const [gfgData, setGFGData] = useState({ solved: 0, score: 0 });
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const fetchedCFData = await fetchCodeforcesData();
+        setDataCF(fetchedCFData);
+
+        const fetchedLeetCodeData = await fetchLeetCodeData();
+        setLeetCodeData(fetchedLeetCodeData);
+
+        const fetchedGFGData = await fetchScrapedGFGData();
+        setGFGData(fetchedGFGData);
+
+        const fetchedCCData = await fetchScrapedCCData();
+        setCCData(fetchedCCData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   return (
     <main className="flex min-h-screen relative flex-col items-center justify-between p-24">
@@ -40,15 +62,15 @@ export default async function Home() {
           <div className="text-gray-600 font-bold text-4xl flex flex-row gap-4">
             Total DSA Problems Solved :
             <p className="text-gray-600 font-bold text-4xl">
-              <NumberTicker value="592" />
+              <NumberTicker value={480} />
             </p>
           </div>
           <div className="grid grid-cols-2 grid-rows-2 gap-8 mt-6">
             <div className="h-60 bg-[#FFFAF1] rounded-xl relative cursor-pointer overflow-clip">
               <div className="px-10 py-5">
                 <Rating
-                  solved={`${parseInt(solvedData.solvedProblem)}`}
-                  rating={`${parseInt(contestData.contestRating)}`}
+                  solved={`${leetCodeData.subs}`}
+                  rating={`${parseInt(leetCodeData.rating)}`}
                 />
               </div>
               <div className="absolute w-72 right-7 bottom-5">
@@ -90,7 +112,10 @@ export default async function Home() {
             </div>
             <div className="h-60 bg-[#E7FCEC] rounded-xl relative cursor-pointer overflow-clip">
               <div className="px-10 py-5">
-                <Rating solved={gfgData.subs} rating={`${gfgData.rating}`} />
+                <Rating
+                  solved={gfgData.submissions}
+                  score={`${gfgData.score}`}
+                />
               </div>
               <div className="absolute w-80 right-7 bottom-2">
                 <Image
@@ -110,7 +135,7 @@ export default async function Home() {
             <div className="h-60 bg-white rounded-xl relative cursor-pointer overflow-clip">
               <div className="px-10 py-5">
                 <Rating
-                  solved={parseInt(ccData.subs)}
+                  solved={parseInt(ccData.submissions)}
                   rating={`${ccData.rating}`}
                 />
               </div>

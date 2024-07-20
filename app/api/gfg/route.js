@@ -4,11 +4,8 @@ const cheerio = require("cheerio");
 
 export async function GET() {
   const profileUrl = "https://www.geeksforgeeks.org/user/abhinavsmmc4/";
-  const contestUrl =
-    "https://www.geeksforgeeks.org/events/rec/gfg-weekly-coding-contest?itm_source=geeksforgeeks&itm_medium=main_header&itm_campaign=contests";
 
   const cssSelectors = {
-    rating: ".events_rank__J8wZd",
     subs: ".scoreCard_head_card_left--score__pC6ZA",
   };
 
@@ -17,24 +14,19 @@ export async function GET() {
     const profileHtml = profileResponse.data;
     const $profile = cheerio.load(profileHtml);
 
-    const subs = $profile(cssSelectors.subs).eq(1).text().trim();
-
-    const contestResponse = await axios.get(contestUrl);
-    const contestHtml = contestResponse.data;
-    const $contest = cheerio.load(contestHtml);
-
-    const rating = $contest(cssSelectors.rating).eq(1).text().trim();
+    const submissions = $profile(cssSelectors.subs).eq(1).text().trim();
+    const score = $profile(cssSelectors.subs).eq(0).text().trim();
 
     const data = {
-      subs,
-      rating,
+      submissions,
+      score,
     };
 
     return NextResponse.json(data);
   } catch (error) {
-    console.error(`Error fetching the URL: ${error}`);
+    console.error(`Error fetching the profile URL: ${error.message}`);
     return NextResponse.json(
-      { error: "Failed to fetch data" },
+      { error: "Failed to fetch data from GeeksforGeeks profile" },
       { status: 500 }
     );
   }
