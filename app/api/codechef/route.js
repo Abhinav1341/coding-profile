@@ -3,7 +3,7 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 
 export async function GET() {
-  const url = "https://www.codechef.com/users/ableed";
+  const url = "https://www.codechef.com/users/mobkun";
 
   const cssSelectors = {
     rating: "div.rating-number",

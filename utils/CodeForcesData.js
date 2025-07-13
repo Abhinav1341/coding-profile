@@ -1,6 +1,6 @@
 export async function fetchUserInfo() {
   const response = await fetch(
-    `https://codeforces.com/api/user.info?handles=vanibha13`
+    `https://codeforces.com/api/user.info?handles=ableed`
   );
   const data = await response.json();
 
@@ -13,7 +13,7 @@ export async function fetchUserInfo() {
 
 export async function fetchUserStatus() {
   const response = await fetch(
-    `https://codeforces.com/api/user.status?handle=vanibha13`
+    `https://codeforces.com/api/user.status?handle=ableed`
   );
   const data = await response.json();
 

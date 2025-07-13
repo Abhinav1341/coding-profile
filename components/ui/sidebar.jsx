@@ -16,7 +16,7 @@ const Sidebar = () => {
             Visit LeetCode
           </MagicCard>
         </Link>
-        <Link href="https://codeforces.com/profile/vanibha13" target="_blank">
+        <Link href="https://codeforces.com/profile/ableed" target="_blank">
           <MagicCard
             className="w-40 md:w-52 lg:w-64 my-2 md:my-4 h-16 md:h-20 bg-[#afd9ff] rounded-md text-center text-[0.8rem] md:text-[1.35rem] font-semibold items-center flex justify-center relative cursor-pointer"
             gradientColor={"#87B3DC"}
@@ -36,7 +36,7 @@ const Sidebar = () => {
             Visit GeeksForGeeks
           </MagicCard>
         </Link>
-        <Link href="https://www.codechef.com/users/ableed" target="_blank">
+        <Link href="https://www.codechef.com/users/mobkun" target="_blank">
           <MagicCard
             className="w-40 md:w-52 lg:w-64 my-2 md:my-4 h-16 md:h-20 bg-amber-100 rounded-md text-center text-[0.8rem] md:text-[1.35rem] font-semibold items-center flex justify-center relative cursor-pointer"
             gradientColor={"#FFD88B"}
