@@ -33,7 +33,7 @@ const StyledWrapper = styled.div`
     height: 48px;
     margin-top: 64px;
     margin-left: 0px;
-    animation: abox1 4s 1s forwards ease-in-out infinite;
+    animation: abox1 2s 0.1s forwards ease-in-out infinite;
   }
 
   .box2 {
@@ -41,7 +41,7 @@ const StyledWrapper = styled.div`
     height: 48px;
     margin-top: 0px;
     margin-left: 0px;
-    animation: abox2 4s 1s forwards ease-in-out infinite;
+    animation: abox2 2s 0.1s forwards ease-in-out infinite;
   }
 
   .box3 {
@@ -49,7 +49,7 @@ const StyledWrapper = styled.div`
     height: 48px;
     margin-top: 0px;
     margin-left: 64px;
-    animation: abox3 4s 1s forwards ease-in-out infinite;
+    animation: abox3 2s 0.1s forwards ease-in-out infinite;
   }
 
   @keyframes abox1 {
