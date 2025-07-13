@@ -1,5 +1,5 @@
 export async function fetchScrapedGFGData() {
-  const res = await fetch("http://localhost:3000/api/gfg");
+  const res = await fetch("https://coding-profile-delta.vercel.app/api/gfg");
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
