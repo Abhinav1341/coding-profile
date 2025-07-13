@@ -4,7 +4,7 @@ const Rating = (props) => {
   const { solved, rating, score } = props;
 
   return (
-    <main className="flex flex-col md:flex-row gap-2 md:gap-3 lg:gap-5 text-slate-900">
+    <main className="flex flex-row gap-2 md:gap-3 lg:gap-5 text-slate-900">
       {solved !== undefined && solved !== null && (
         <div className="flex flex-col items-center md:gap-2">
           <div className="text-center text-xs md:text-lg leading-3 md:leading-5 font-bold">

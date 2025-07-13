@@ -88,20 +88,24 @@ export default function Home() {
                   <NumberTicker value={total} />
                 </p>
               </div>
-              <div className="grid grid-cols-2 grid-rows-2 gap-8 mt-6">
-                <div className=" h-48 md:52 lg:h-60 bg-[#FFFAF1] hover:scale-[1.02] transition-all rounded-xl relative cursor-pointer overflow-clip">
-                  <div className="md:px-6 px-7 py-2 md:py-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-3 md:gap-8 mt-6">
+                <div className=" h-32 md:52 lg:h-60 bg-[#ede6d7] hover:scale-[1.02] transition-all rounded-xl relative cursor-pointer overflow-clip">
+                  <div className="md:px-6 md:block flex items-center justify-center px-auto pt-4 md:py-5">
                     <Rating
                       solved={`${leetCodeData.solved}`}
                       rating={`${Math.ceil(leetCodeData.rating)}`}
                     />
                   </div>
-                  <div className="absolute w-3/4 left-4 bottom-5 md:w-40 md:right-5 md:bottom-4 lg:w-72 lg:right-7 lg:bottom-5">
+                  <div className="flex items-center justify-center md:absolute md:left-4 md:w-40 md:right-5 md:bottom-4 lg:w-72 lg:right-7 lg:bottom-5">
+                    <div className="flex items-center justify-center md:hidden w-full h-full text-2xl font-semibold text-gray-700 text-center mt-4">
+                      LeetCode
+                    </div>
                     <Image
                       src="/lc-logo.svg"
                       height={100}
                       width={500}
-                      alt="LeetCode Logo"
+                      alt="LeetCode"
+                      className="hidden md:block"
                     />
                   </div>
                   <AnimatedGridPattern
@@ -111,19 +115,23 @@ export default function Home() {
                     className="mask-image:radial-gradient(500px_circle_at_center,white,transparent) inset-x-0 inset-y-[-30%] h-[150%] skew-y-12 overflow-hidden opacity-20"
                   />
                 </div>
-                <div className="h-48 md:52 lg:h-60  bg-[#DEF2FC] rounded-xl hover:scale-[1.02] transition-all relative cursor-pointer overflow-clip">
-                  <div className="md:px-6 px-7 py-2 md:py-5">
+                <div className="h-32 md:52 lg:h-60  bg-[#d6e6ee] rounded-xl hover:scale-[1.02] transition-all relative cursor-pointer overflow-clip">
+                  <div className="md:px-6 md:block flex items-center justify-center px-auto pt-4 md:py-5">
                     <Rating
                       solved={`${dataCF.solvedCount}`}
                       rating={`${dataCF.rating}`}
                     />
                   </div>
-                  <div className="absolute w-3/4 left-4  md:w-52 lg:w-80 lg:right-7 md:right-4 md:bottom-6 lg:bottom-8">
+                  <div className="flex items-center justify-center md:absolute md:left-4 md:w-40 md:right-5 md:bottom-4 lg:w-72 lg:right-7 lg:bottom-5">
+                    <div className="flex items-center justify-center md:hidden w-full h-full text-2xl font-semibold text-gray-700 text-center mt-4">
+                      Codeforces
+                    </div>
                     <Image
                       src="/cf-logo.svg"
                       height={100}
                       width={500}
-                      alt="Codeforces Logo"
+                      alt="Codeforces"
+                      className="hidden md:block"
                     />
                   </div>
                   <AnimatedGridPattern
@@ -133,19 +141,23 @@ export default function Home() {
                     className="mask-image:radial-gradient(500px_circle_at_center,white,transparent) inset-x-0 inset-y-[-30%] h-[150%] skew-y-12 overflow-hidden opacity-20"
                   />
                 </div>
-                <div className="h-48 md:52 lg:h-60  bg-[#E7FCEC] rounded-xl hover:scale-[1.02] transition-all relative cursor-pointer overflow-clip">
-                  <div className="md:px-6 px-7 py-2 md:py-5">
+                <div className="h-32 md:52 lg:h-60  bg-[#d4f0db] rounded-xl hover:scale-[1.02] transition-all relative cursor-pointer overflow-clip">
+                  <div className="md:px-6 md:block flex items-center justify-center px-auto pt-4 md:py-5">
                     <Rating
                       solved={gfgData.submissions}
                       rating={`${gfgData.rating}`}
                     />
                   </div>
-                  <div className="absolute w-3/4 left-4  md:w-52 lg:w-80 md:right-4 lg:right-7 md:bottom-2">
+                  <div className="flex items-center justify-center md:absolute md:left-4 md:w-40 md:right-5 md:bottom-4 lg:w-72 lg:right-7 lg:bottom-5">
+                    <div className="flex items-center justify-center md:hidden w-full h-full text-2xl font-semibold text-gray-700 text-center mt-4">
+                      GeeksForGeeks
+                    </div>
                     <Image
                       src="/gfg-new-logo.png"
                       height={100}
                       width={500}
-                      alt="GFG Logo"
+                      alt="GFG"
+                      className="hidden md:block"
                     />
                   </div>
                   <AnimatedGridPattern
@@ -155,19 +167,23 @@ export default function Home() {
                     className="mask-image:radial-gradient(500px_circle_at_center,white,transparent) inset-x-0 inset-y-[-30%] h-[150%] skew-y-12 overflow-hidden opacity-20"
                   />
                 </div>
-                <div className="h-48 md:52 lg:h-60  bg-white rounded-xl hover:scale-[1.02] transition-all relative cursor-pointer overflow-clip">
-                  <div className="md:px-6 px-7 py-2 md:py-5">
+                <div className="h-32 md:52 lg:h-60  bg-[#eadbd5] rounded-xl hover:scale-[1.02] transition-all relative cursor-pointer overflow-clip">
+                  <div className="md:px-6 md:block flex items-center justify-center px-auto pt-4 md:py-5">
                     <Rating
                       solved={`${ccData.subm}`}
                       rating={`${ccData.rating}`}
                     />
                   </div>
-                  <div className="absolute w-3/4 left-4  md:w-44 lg:w-64 md:right-4 lg:right-7 md:bottom-1 lg:bottom-3">
+                  <div className="flex items-center justify-center md:absolute md:left-4 md:w-40 md:right-5 md:bottom-4 lg:w-72 lg:right-7 lg:bottom-5">
+                    <div className="flex items-center justify-center md:hidden w-full h-full text-2xl font-semibold text-gray-700 text-center mt-4">
+                      Codechef
+                    </div>
                     <Image
                       src="/cc-logo.svg"
                       height={100}
                       width={500}
-                      alt="CC Logo"
+                      alt="Codechef"
+                      className="hidden md:block"
                     />
                   </div>
                   <AnimatedGridPattern
