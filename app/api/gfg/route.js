@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 const axios = require("axios");
 const cheerio = require("cheerio");
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   const profileUrl = "https://www.geeksforgeeks.org/user/abhinavsmmc4/";

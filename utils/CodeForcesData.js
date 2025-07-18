@@ -1,6 +1,9 @@
+const REVALIDATE_TIME = 1800;
+export const dynamic = "force-dynamic";
 export async function fetchUserInfo() {
   const response = await fetch(
-    `https://codeforces.com/api/user.info?handles=ableed`
+    `https://codeforces.com/api/user.info?handles=ableed`,
+    { next: { revalidate: REVALIDATE_TIME } }
   );
   const data = await response.json();
 
@@ -13,7 +16,8 @@ export async function fetchUserInfo() {
 
 export async function fetchUserStatus() {
   const response = await fetch(
-    `https://codeforces.com/api/user.status?handle=ableed`
+    `https://codeforces.com/api/user.status?handle=ableed`,
+    { next: { revalidate: REVALIDATE_TIME } }
   );
   const data = await response.json();
 
