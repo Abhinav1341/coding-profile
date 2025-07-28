@@ -12,7 +12,6 @@ import { fetchScrapedLeetcodeData } from "@/utils/leetcodeData";
 import { fetchScrapedCCData } from "@/utils/codechef";
 import { fetchScrapedGFGData } from "@/utils/gfgData";
 import { fetchCodeforcesData } from "@/utils/CodeForcesData";
-import { fetchAtcoderData } from "@/utils/atcoder";
 
 export default function Home() {
   const [dataCF, setDataCF] = useState({ solvedCount: 0, rating: 0 });
@@ -22,7 +21,6 @@ export default function Home() {
     rating: 0,
     solved: 0,
   });
-  const [atcoderData, setAtcoderData] = useState({ rating: 0, kyu: 8 });
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
 
@@ -34,20 +32,17 @@ export default function Home() {
           fetchedGFGData,
           fetchedCCData,
           fetchedLeetCodeData,
-          fetchedACData,
         ] = await Promise.all([
           fetchCodeforcesData(),
           fetchScrapedGFGData(),
           fetchScrapedCCData(),
           fetchScrapedLeetcodeData(),
-          fetchAtcoderData(),
         ]);
 
         setDataCF(fetchedCFData);
         setGFGData(fetchedGFGData);
         setCCData(fetchedCCData);
         setLeetCodeData(fetchedLeetCodeData);
-        setAtcoderData(fetchedACData);
 
         const totalSolved =
           parseInt(fetchedLeetCodeData.solved) +
@@ -93,10 +88,8 @@ export default function Home() {
                   <NumberTicker value={total} />
                 </p>
               </div>
-              {/* This is the updated grid container. It uses a 6-column layout on large screens to accommodate the 2-over-3 structure. */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3 md:gap-8 mt-6">
-                {/* Item 1: Spans 3 of 6 columns on large screens */}
-                <div className="lg:col-span-3 h-32 md:52 lg:h-60 bg-[#ede6d7] hover:scale-[1.02] transition-all rounded-xl relative cursor-pointer overflow-clip">
+              <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-3 md:gap-8 mt-6">
+                <div className=" h-32 md:52 lg:h-60 bg-[#ede6d7] hover:scale-[1.02] transition-all rounded-xl relative cursor-pointer overflow-clip">
                   <div className="md:px-6 md:block flex items-center justify-center px-auto pt-4 md:py-5">
                     <Rating
                       solved={`${leetCodeData.solved}`}
@@ -122,9 +115,7 @@ export default function Home() {
                     className="mask-image:radial-gradient(500px_circle_at_center,white,transparent) inset-x-0 inset-y-[-30%] h-[150%] skew-y-12 overflow-hidden opacity-20"
                   />
                 </div>
-
-                {/* Item 2: Spans 3 of 6 columns on large screens */}
-                <div className="lg:col-span-3 h-32 md:52 lg:h-60 bg-[#d6e6ee] rounded-xl hover:scale-[1.02] transition-all relative cursor-pointer overflow-clip">
+                <div className="h-32 md:52 lg:h-60  bg-[#d6e6ee] rounded-xl hover:scale-[1.02] transition-all relative cursor-pointer overflow-clip">
                   <div className="md:px-6 md:block flex items-center justify-center px-auto pt-4 md:py-5">
                     <Rating
                       solved={`${dataCF.solvedCount}`}
@@ -150,9 +141,7 @@ export default function Home() {
                     className="mask-image:radial-gradient(500px_circle_at_center,white,transparent) inset-x-0 inset-y-[-30%] h-[150%] skew-y-12 overflow-hidden opacity-20"
                   />
                 </div>
-
-                {/* Item 3: Spans 2 of 6 columns on large screens */}
-                <div className="lg:col-span-2 h-32 md:52 lg:h-60 bg-[#d4f0db] rounded-xl hover:scale-[1.02] transition-all relative cursor-pointer overflow-clip">
+                <div className="h-32 md:52 lg:h-60  bg-[#d4f0db] rounded-xl hover:scale-[1.02] transition-all relative cursor-pointer overflow-clip">
                   <div className="md:px-6 md:block flex items-center justify-center px-auto pt-4 md:py-5">
                     <Rating
                       solved={gfgData.submissions}
@@ -178,9 +167,7 @@ export default function Home() {
                     className="mask-image:radial-gradient(500px_circle_at_center,white,transparent) inset-x-0 inset-y-[-30%] h-[150%] skew-y-12 overflow-hidden opacity-20"
                   />
                 </div>
-
-                {/* Item 4: Spans 2 of 6 columns on large screens */}
-                <div className="lg:col-span-2 h-32 md:52 lg:h-60 bg-[#eadbd5] rounded-xl hover:scale-[1.02] transition-all relative cursor-pointer overflow-clip">
+                <div className="h-32 md:52 lg:h-60  bg-[#eadbd5] rounded-xl hover:scale-[1.02] transition-all relative cursor-pointer overflow-clip">
                   <div className="md:px-6 md:block flex items-center justify-center px-auto pt-4 md:py-5">
                     <Rating
                       solved={`${ccData.subm}`}
@@ -203,38 +190,6 @@ export default function Home() {
                     maxOpacity={0.1}
                     duration={4}
                     repeatDelay={2}
-                    className="mask-image:radial-gradient(500px_circle_at_center,white,transparent) inset-x-0 inset-y-[-30%] h-[150%] skew-y-12 overflow-hidden opacity-20"
-                  />
-                </div>
-
-                {/* Item 5 (New): Spans 2 of 6 columns on large screens */}
-                <div className="lg:col-span-2 h-32 md:52 lg:h-60 bg-[#d5e4ea] rounded-xl hover:scale-[1.02] transition-all relative cursor-pointer overflow-clip">
-                  <div className="md:px-6 md:block flex items-center justify-center px-auto pt-4 md:py-5">
-                    <Rating
-                      kyu={`${atcoderData.kyu} Kyu`}
-                      rating={`${atcoderData.rating}`}
-                    />
-                  </div>
-                  <div className="flex items-center justify-center md:absolute md:left-4 md:w-40 md:right-5 md:bottom-4 lg:w-72 lg:right-7 lg:bottom-5">
-                    <div className="flex items-center justify-center md:hidden w-full h-full text-2xl font-semibold text-gray-700 text-center mt-4">
-                      AtCoder
-                    </div>
-                    <Image
-                      src="/ac-logo.svg"
-                      height={100}
-                      width={500}
-                      alt="AtCoder"
-                      className="hidden md:block"
-                      onError={(e) => {
-                        e.currentTarget.src =
-                          "https://placehold.co/500x100/d5e4ea/333333?text=AtCoder";
-                      }}
-                    />
-                  </div>
-                  <AnimatedGridPattern
-                    maxOpacity={0.1}
-                    duration={8}
-                    repeatDelay={1}
                     className="mask-image:radial-gradient(500px_circle_at_center,white,transparent) inset-x-0 inset-y-[-30%] h-[150%] skew-y-12 overflow-hidden opacity-20"
                   />
                 </div>
