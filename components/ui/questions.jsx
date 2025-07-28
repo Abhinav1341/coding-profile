@@ -1,10 +1,22 @@
 import React from "react";
 
 const Rating = (props) => {
-  const { solved, rating, score } = props;
+  const { solved, rating, score, kyu } = props;
 
   return (
     <main className="flex flex-row gap-2 md:gap-3 lg:gap-5 text-slate-900">
+      {kyu !== undefined && kyu !== null && (
+        <div className="flex flex-col items-center md:gap-2">
+          <div className="text-center text-xs md:text-lg leading-3 md:leading-5 font-bold">
+            Kyu
+            <br />
+            <br />
+          </div>
+          <div className="text-center text-lg md:text-3xl lg:text-4xl font-semibold">
+            {kyu}
+          </div>
+        </div>
+      )}
       {solved !== undefined && solved !== null && (
         <div className="flex flex-col items-center md:gap-2">
           <div className="text-center text-xs md:text-lg leading-3 md:leading-5 font-bold">
