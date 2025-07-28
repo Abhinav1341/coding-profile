@@ -1,4 +1,5 @@
 const REVALIDATE_TIME = 1800;
+export const dynamic = "force-dynamic";
 export async function fetchUserInfo() {
   const response = await fetch(
     `https://codeforces.com/api/user.info?handles=ableed`,
