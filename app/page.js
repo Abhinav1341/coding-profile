@@ -12,6 +12,7 @@ import { fetchScrapedLeetcodeData } from "@/utils/leetcodeData";
 import { fetchScrapedCCData } from "@/utils/codechef";
 import { fetchScrapedGFGData } from "@/utils/gfgData";
 import { fetchCodeforcesData } from "@/utils/CodeForcesData";
+import { profiles } from "@/lib/config";
 
 export default function Home() {
   const [dataCF, setDataCF] = useState({ solvedCount: 0, rating: 0 });
@@ -27,28 +28,54 @@ export default function Home() {
   useEffect(() => {
     async function fetchData() {
       try {
+        const fetchPromises = [];
+
+        // Conditionally add fetch promises based on config
+        if (profiles.codeforces) {
+          fetchPromises.push(fetchCodeforcesData());
+        } else {
+          fetchPromises.push(Promise.resolve(null)); // Add null placeholder
+        }
+
+        if (profiles.geeksforgeeks) {
+          fetchPromises.push(fetchScrapedGFGData());
+        } else {
+          fetchPromises.push(Promise.resolve(null)); // Add null placeholder
+        }
+
+        if (profiles.codechef) {
+          fetchPromises.push(fetchScrapedCCData());
+        } else {
+          fetchPromises.push(Promise.resolve(null)); // Add null placeholder
+        }
+
+        if (profiles.leetcode) {
+          fetchPromises.push(fetchScrapedLeetcodeData());
+        } else {
+          fetchPromises.push(Promise.resolve(null)); // Add null placeholder
+        }
+
         const [
           fetchedCFData,
           fetchedGFGData,
           fetchedCCData,
           fetchedLeetCodeData,
-        ] = await Promise.all([
-          fetchCodeforcesData(),
-          fetchScrapedGFGData(),
-          fetchScrapedCCData(),
-          fetchScrapedLeetcodeData(),
-        ]);
+        ] = await Promise.all(fetchPromises);
 
-        setDataCF(fetchedCFData);
-        setGFGData(fetchedGFGData);
-        setCCData(fetchedCCData);
-        setLeetCodeData(fetchedLeetCodeData);
+        // Set state only if data was fetched
+        if (fetchedCFData) setDataCF(fetchedCFData);
+        if (fetchedGFGData) setGFGData(fetchedGFGData);
+        if (fetchedCCData) setCCData(fetchedCCData);
+        if (fetchedLeetCodeData) setLeetCodeData(fetchedLeetCodeData);
 
+        // Safely calculate total solved
         const totalSolved =
-          parseInt(fetchedLeetCodeData.solved) +
-          parseInt(fetchedCFData.solvedCount) +
-          parseInt(fetchedGFGData.submissions) +
-          parseInt(fetchedCCData.subm);
+          (fetchedLeetCodeData
+            ? parseInt(fetchedLeetCodeData.solved) || 0
+            : 0) +
+          (fetchedCFData ? parseInt(fetchedCFData.solvedCount) || 0 : 0) +
+          (fetchedGFGData ? parseInt(fetchedGFGData.submissions) || 0 : 0) +
+          (fetchedCCData ? parseInt(fetchedCCData.subm) || 0 : 0);
 
         setTotal(totalSolved);
       } catch (error) {

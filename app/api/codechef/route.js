@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
+import { profileLinks } from "@/lib/config";
 const axios = require("axios");
 const cheerio = require("cheerio");
 
 export async function GET() {
-  const url = "https://www.codechef.com/users/mobkun";
+  const url = profileLinks.codechef;
+  //const url = "https://www.codechef.com/users/mobkun";
 
   const cssSelectors = {
     rating: "div.rating-number",

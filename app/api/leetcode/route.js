@@ -1,8 +1,12 @@
+import { profiles } from "@/lib/config";
 import axios from "axios";
-const username = "ableed";
+const username = profiles.leetcode;
 const LEETCODE_API = "https://leetcode.com/graphql";
 
 export async function GET() {
+  if (!username) {
+    return Response.json({ rating: 0, solved: 0 });
+  }
   try {
     const contestQuery = `
       query getContestRating($username: String!) {

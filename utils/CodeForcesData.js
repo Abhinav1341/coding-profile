@@ -1,7 +1,9 @@
 const REVALIDATE_TIME = 1800;
+import { profiles } from "@/lib/config";
+const CF_HANDLE = profiles.codeforces;
 export async function fetchUserInfo() {
   const response = await fetch(
-    `https://codeforces.com/api/user.info?handles=ableed`,
+    `https://codeforces.com/api/user.info?handles=${CF_HANDLE}`,
     { next: { revalidate: REVALIDATE_TIME } }
   );
   const data = await response.json();
@@ -15,7 +17,7 @@ export async function fetchUserInfo() {
 
 export async function fetchUserStatus() {
   const response = await fetch(
-    `https://codeforces.com/api/user.status?handle=ableed`,
+    `https://codeforces.com/api/user.status?handle=${CF_HANDLE}`,
     { next: { revalidate: REVALIDATE_TIME } }
   );
   const data = await response.json();
@@ -28,6 +30,12 @@ export async function fetchUserStatus() {
 }
 
 export async function fetchCodeforcesData() {
+  if (!CF_HANDLE) {
+    return {
+      rating: 0,
+      solvedCount: 0,
+    };
+  }
   try {
     const userInfo = await fetchUserInfo();
     const submissions = await fetchUserStatus();

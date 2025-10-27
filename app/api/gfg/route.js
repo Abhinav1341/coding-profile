@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
+import { profileLinks } from "@/lib/config";
 const axios = require("axios");
 const cheerio = require("cheerio");
 
 export async function GET() {
-  const profileUrl = "https://www.geeksforgeeks.org/user/abhinavsmmc4/";
+  const profileUrl = profileLinks.geeksforgeeks;
 
   const cssSelectors = {
     scoreCards: ".scoreCard_head_left--score__oSi_x",
