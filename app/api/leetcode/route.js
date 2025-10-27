@@ -1,7 +1,6 @@
 import axios from "axios";
 const username = "ableed";
 const LEETCODE_API = "https://leetcode.com/graphql";
-export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
