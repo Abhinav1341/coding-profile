@@ -1,4 +1,5 @@
-const REVALIDATE_TIME = 1800;
+const REVALIDATE_TIME = 180;
+export const dynamic = "force-dynamic";
 import { profiles } from "@/lib/config";
 const CF_HANDLE = profiles.codeforces;
 export async function fetchUserInfo() {

@@ -1,4 +1,5 @@
-const REVALIDATE_TIME = 1800;
+const REVALIDATE_TIME = 180;
+export const dynamic = "force-dynamic";
 export async function fetchScrapedLeetcodeData() {
   const res = await fetch("/api/leetcode", {
     next: { revalidate: REVALIDATE_TIME },

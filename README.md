@@ -35,7 +35,7 @@ This project is a Next.js application designed to display your coding statistics
 # Getting Started
 Follow these steps to set up and run the project locally with your own coding profiles.
 
-Prerequisites:
+Prerequisites: 
 * Node.js (v18.17.0 or later recommended)
 * npm, yarn, or pnpm
 
