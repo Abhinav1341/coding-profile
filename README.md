@@ -26,9 +26,9 @@ This project is a Next.js application designed to display your coding statistics
 # How it works?
 1. <b>Configuration:</b> Usernames for the desired platforms are stored in the lib/config.js file.
 2. <b>Data Fetching:</b>
-    * The frontend (app/page.js) triggers data fetching functions.
-    * For Codeforces and LeetCode, official APIs are used (via utils/CodeForcesData.js and app/api/leetcode/route.js).
-    * For GeeksforGeeks and CodeChef, Next.js API routes (app/api/gfg/route.js, app/api/codechef/route.js) use Axios and Cheerio to scrape the public profile pages for relevant statistics. (Note: Scraping relies on the structure of the target websites. If GFG or CodeChef change their page layout, the scraping logic in these API routes may need to be updated.)
+    * The frontend `(app/page.js)` triggers data fetching functions.
+    * For Codeforces and LeetCode, official APIs are used `(via utils/CodeForcesData.js and app/api/leetcode/route.js)`.
+    * For GeeksforGeeks and CodeChef, Next.js API routes `(app/api/gfg/route.js, app/api/codechef/route.js)` use Axios and Cheerio to scrape the public profile pages for relevant statistics. (Note: Scraping relies on the structure of the target websites. If GFG or CodeChef change their page layout, the scraping logic in these API routes may need to be updated.)
     * Data fetching functions handle errors gracefully, returning default values (e.g., 0) if a platform is disabled in the config or if fetching fails.
 3. <b>Display:</b> The fetched data is displayed on the main page using React components, including animated number tickers and styled cards for each platform.
 
@@ -40,6 +40,7 @@ Prerequisites:
 * npm, yarn, or pnpm
 
 Installation and Setup:
+
 0. Star the Repository `:)`
 1. Fork the Repository
 2. Clone the repository:
